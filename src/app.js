@@ -10,7 +10,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const port = process.env.PORT || 5001;
-const mongoose = require("./db/mongoose");
+const mongoose = require("./database/mongoose");
 const User = require("./models/users");
 const auth = require("./middleware/auth");
 
