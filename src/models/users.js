@@ -1,6 +1,7 @@
-const express = require("express");
+// const express = require("express");
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs"),
+const bcrypt = require("bcryptjs");
+const validator = require("validator"),
 	SALT_WORK_FACTOR = 10;
 const jwt = require("jsonwebtoken");
 
@@ -25,6 +26,11 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		trim: true,
 		index: { unique: true },
+		validate(value) {
+			if (!validator.isEmail(value)) {
+				throw new Error("Email is not valid");
+			}
+		},
 	},
 	password: {
 		type: String,
@@ -96,24 +102,6 @@ UserSchema.methods.generateAuthToken = function () {
 		console.log(error);
 	}
 };
-
-/* UserSchema.pre("save", function (next) {
-    const user = this;
-    if(!user.isModified('password')) return next();
-	if (this.isModified("password")) {
-		// this.password = bcrypt.hash(this.password, 10);
-		bcrypt
-			.hash(this.password, 10)
-			.then((pass) => {
-				this.password = pass;
-				next();
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}
-	// next();
-}); */
 
 //this is new collection;
 const User = mongoose.model("User", UserSchema);
