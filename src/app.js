@@ -14,6 +14,12 @@ const mongoose = require("./database/mongoose");
 const User = require("./models/users");
 const auth = require("./middleware/auth");
 
+if (process.env.PORT) {
+	console.log("port It is set!");
+} else {
+	console.log("port is not set!");
+}
+
 app.get("/", (req, res) => {
 	res.send("Hello from Kapil");
 });
