@@ -17,8 +17,10 @@ const auth = require("./middleware/auth");
 if (process.env.PORT) {
 	console.log("port It is set!");
 } else {
-	console.log("port is not set!");
+	console.log("port is not set!", process.env.PORT);
 }
+
+console.log(`port is ${process.env.PORT}`);
 
 app.get("/", (req, res) => {
 	res.send("Hello from Kapil");
