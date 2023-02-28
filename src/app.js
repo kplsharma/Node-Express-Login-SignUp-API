@@ -20,10 +20,8 @@ if (process.env.PORT) {
 	console.log("port is not set!", process.env.PORT);
 }
 
-console.log(`port is ${process.env.PORT}`);
-
 app.get("/", (req, res) => {
-	res.send("Hello from Kapil");
+	res.send("Hello from Kapil, CI/CD Test");
 });
 
 app.get("/dashboard", auth, (req, res) => {
